@@ -12,10 +12,11 @@ namespace Restik.Models
         [Key]
         [Required]
         public int Id { get; set; }
-        public int Price { get; set; }
-        public int NumberPlace { get; set; }
+        public int Cost { get; set; }
         public bool IsPaid { get; set; }
         public int BookingId { get; set; }
         public Booking Booking { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

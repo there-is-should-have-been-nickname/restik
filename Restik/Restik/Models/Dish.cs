@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Restik.Models
 {
-    public class Hall
+    public class Dish
     {
         [Key]
         [Required]
@@ -16,5 +16,8 @@ namespace Restik.Models
         public string Name { get; set; }
         [MaxLength(256)]
         public string ImagePath { get; set; }
+        public int CuisineId { get; set; }
+        public Cuisine Cuisine { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }

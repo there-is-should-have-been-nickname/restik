@@ -14,17 +14,13 @@ namespace Restik.Models
         public int Id { get; set; }
         [MaxLength(100)]
         public string Number { get; set; }
-        public int HallId { get; set; }
-        public Hall Hall { get; set; }
-        public int TableId { get; set; }
-        public Table Table { get; set; }
-        public int PlaceId { get; set; }
-        public Place Place { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
+        public int NumberPlaces { get; set; }
         public int? EventId { get; set; }
-        public Event Event { get; set; }
-        public int? CuisineId { get; set; }
-        public Cuisine Cuisine { get; set; }
+        public Event? Event { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+        public List<Dish> Dishes { get; set; }
     }
 }

@@ -14,8 +14,10 @@ namespace Restik.Models
         public int Id { get; set; }
         [MaxLength(100)]
         public string Name { get; set; }
-        public bool IsOrdered { get; set; }
+        public int Price { get; set; }
         public int TableId { get; set; }
         public Table Table { get; set; }
+        public int? BookingId { get; set; }
+        public Booking? Booking { get; set; }
     }
 }
