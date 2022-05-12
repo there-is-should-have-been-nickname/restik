@@ -49,12 +49,9 @@ C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\bin\Debug\net5.0-windows\run
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\bin\Debug\net5.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\bin\Debug\net5.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\bin\Debug\net5.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.csproj.AssemblyReference.cache
-C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\MainWindow.g.cs
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\App.g.cs
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik_MarkupCompile.cache
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik_MarkupCompile.lref
-C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\MainWindow.baml
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.g.resources
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.AssemblyInfoInputs.cache
@@ -65,3 +62,6 @@ C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Res
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\ref\Restik.dll
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.pdb
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.genruntimeconfig.cache
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\MainWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\MainWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.csproj.AssemblyReference.cache

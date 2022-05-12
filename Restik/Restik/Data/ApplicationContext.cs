@@ -14,23 +14,28 @@ namespace Restik.Data
         public DbSet<Place> Places { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
         public ApplicationContext()
         {
+        }
+
+        public ApplicationContext(DbContextOptions<DbContext> options) : base(options)
+        {
             Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var Builder = new ConfigurationBuilder();
-            Builder.SetBasePath("C:\\Users\\ACER\\Desktop\\Projects\\restik\\Restik\\Restik");
-            Builder.AddJsonFile("config.json");
-            var Config = Builder.Build();
-            string ConnectionString = Config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(ConnectionString);
+            //var Builder = new ConfigurationBuilder();
+            //Builder.SetBasePath("C:\\Users\\ACER\\Desktop\\Projects\\restik\\Restik\\Restik");
+            //Builder.AddJsonFile("config.json");
+            //var Config = Builder.Build();
+            //string ConnectionString = Config.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Restik;Trusted_Connection=True;");
         }
     }
 }

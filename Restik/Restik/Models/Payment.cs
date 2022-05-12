@@ -16,7 +16,7 @@ namespace Restik.Models
         public bool IsPaid { get; set; }
         public int BookingId { get; set; }
         public Booking Booking { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public User User { get; set; }
     }
 }
