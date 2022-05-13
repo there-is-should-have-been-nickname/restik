@@ -65,3 +65,7 @@ C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Res
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\MainWindow.g.cs
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\MainWindow.baml
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Restik.csproj.AssemblyReference.cache
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\SignInWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\SignInWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\SignUpWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\SignUpWindow.baml

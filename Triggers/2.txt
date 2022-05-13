@@ -1,0 +1,19 @@
+CREATE TRIGGER ProcessPaymentData
+ON Payments
+AFTER UPDATE
+AS
+BEGIN
+	DECLARE @bookingId INT;
+	SET @bookingId = (SELECT BookingId FROM Inserted);
+
+	DECLARE @price INT;
+	SET @price = (SELECT SUM(Price) 
+		FROM Places
+		WHERE BookingId = @bookingId
+		GROUP BY BookingId
+		);
+
+	UPDATE Payments
+	SET Cost = @price
+	WHERE BookingId = @bookingId;
+END;

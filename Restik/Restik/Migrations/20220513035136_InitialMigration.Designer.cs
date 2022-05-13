@@ -10,7 +10,7 @@ using Restik.Data;
 namespace Restik.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220512155105_InitialMigration")]
+    [Migration("20220513035136_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

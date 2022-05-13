@@ -1,0 +1,11 @@
+CREATE TRIGGER AddingPaymentAfterBooking
+ON Bookings
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @bookingId INT;
+	SET @bookingId = (SELECT id FROM Inserted);
+
+	INSERT INTO Payments(Cost, IsPaid, BookingId, UserId)
+	VALUES (0, 0, @bookingId, NULL);
+END;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Restik.Lib;
+using System.Windows;
 
 namespace Restik.Views
 {
@@ -10,6 +11,16 @@ namespace Restik.Views
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new SignInWindow());
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new SignUpWindow());
         }
     }
 }

@@ -17,6 +17,6 @@ namespace Restik.Models
         public int BookingId { get; set; }
         public Booking Booking { get; set; }
         public int? UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

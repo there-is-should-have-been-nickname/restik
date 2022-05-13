@@ -20,5 +20,7 @@ namespace Restik.Models
         public string Phone { get; set; }
         [MaxLength(100)]
         public string Mail { get; set; }
+        [MaxLength(64)]
+        public string Password { get; set; }
     }
 }
