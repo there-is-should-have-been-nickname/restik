@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\App.xaml
-12-1828515484
+141831169148
 
-35-1205351640
+371795632537
 2201365028473
-Views\AddHallWindow.xaml;Views\AddPlaceWindow.xaml;Views\AddTableWindow.xaml;Views\AddUserWindow.xaml;Views\AdminWindow.xaml;Views\MainWindow.xaml;Views\SignInWindow.xaml;Views\SignUpWindow.xaml;Views\UpdateHallWindow.xaml;Views\UpdatePlaceWindow.xaml;Views\UpdateTableWindow.xaml;Views\UpdateUserWindow.xaml;
+Views\AddEventWindow.xaml;Views\AddHallWindow.xaml;Views\AddPlaceWindow.xaml;Views\AddTableWindow.xaml;Views\AddUserWindow.xaml;Views\AdminWindow.xaml;Views\MainWindow.xaml;Views\SignInWindow.xaml;Views\SignUpWindow.xaml;Views\UpdateEventWindow.xaml;Views\UpdateHallWindow.xaml;Views\UpdatePlaceWindow.xaml;Views\UpdateTableWindow.xaml;Views\UpdateUserWindow.xaml;
 
 False
 

@@ -27,6 +27,7 @@ namespace Restik.Views
             FillHallsComboBox();
             FillTablesComboBox();
             FillPlacesComboBox();
+            FillEventsComboBox();
         }
 
         private void FillUsersComboBox()
@@ -69,6 +70,17 @@ namespace Restik.Views
             {
                 var NewItem = ViewHelper.GetComboBoxItem(Place.Name);
                 PlacesComboBox.Items.Add(NewItem);
+            }
+
+        }
+
+        private void FillEventsComboBox()
+        {
+            EventsComboBox.Items.Clear();
+            foreach (var Event in DbManager.GetEvents())
+            {
+                var NewItem = ViewHelper.GetComboBoxItem(Event.Type);
+                EventsComboBox.Items.Add(NewItem);
             }
 
         }
@@ -144,6 +156,23 @@ namespace Restik.Views
             DbManager.DeletePlace(PlacesComboBox.Text);
             MessageBox.Show("Вы успешно удалили место");
             FillPlacesComboBox();
+        }
+
+        private void Button_Click_13(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new AddEventWindow());
+        }
+
+        private void Button_Click_14(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new UpdateEventWindow(EventsComboBox.Text));
+        }
+
+        private void Button_Click_15(object sender, RoutedEventArgs e)
+        {
+            DbManager.DeleteEvent(EventsComboBox.Text);
+            MessageBox.Show("Вы успешно удалили событие");
+            FillEventsComboBox();
         }
     }
 }

@@ -286,5 +286,53 @@ namespace Restik.Lib
                     .Include(B => B.Payments).SingleOrDefault(B => B.Number == number);
             }
         }
+
+        ///
+        public static List<Event> GetEvents()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Events.ToList();
+            }
+        }
+
+        public static Event GetEvent(string type)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Events.SingleOrDefault(E => E.Type == type);
+            }
+        }
+
+        public static void AddEvent(Event event_)
+        {
+            using (var db = new ApplicationContext())
+            {
+                db.Events.Add(event_);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteEvent(string type)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredEvent = db.Events.SingleOrDefault(E => E.Type == type);
+                db.Events.Remove(RequiredEvent);
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateEvent(Event NewEvent)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredEvent = db.Events.SingleOrDefault(E => E.Id == NewEvent.Id);
+                RequiredEvent.Type = NewEvent.Type;
+
+                db.Events.Update(RequiredEvent);
+                db.SaveChanges();
+            }
+        }
     }
 }
