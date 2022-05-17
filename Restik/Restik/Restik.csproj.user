@@ -10,6 +10,9 @@
     <Compile Update="Views\AddHallWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\AddTableWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\AddUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,12 +28,18 @@
     <Compile Update="Views\UpdateHallWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UpdateTableWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UpdateUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\AddHallWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddTableWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\AddUserWindow.xaml">
@@ -49,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UpdateHallWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UpdateTableWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UpdateUserWindow.xaml">

@@ -16,5 +16,6 @@ namespace Restik.Models
         public string Name { get; set; }
         public int HallId { get; set; }
         public Hall Hall { get; set; }
+        public List<Place> Places { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Restik.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Restik.Data;
 using Restik.Models;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,65 @@ namespace Restik.Lib
             }
         }
 
+        public static List<Table> GetTables()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Tables.ToList();
+            }
+        }
 
+        public static Table GetTable(string name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Tables.Include(T => T.Hall).SingleOrDefault(T => T.Name == name);
+            }
+        }
+
+        public static void AddTable(Table table)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var AddedHall = table.Hall;
+                table.Hall = new Hall();
+                
+                var ExistedHall = db.Halls.SingleOrDefault(H => H.Id == AddedHall.Id);
+                table.Hall = ExistedHall;
+                
+
+                db.Tables.Add(table);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteTable(string Name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredTable = db.Tables.SingleOrDefault(T => T.Name == Name);
+                db.Tables.Remove(RequiredTable);
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateTable(Table NewTable)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredTable = db.Tables.SingleOrDefault(H => H.Id == NewTable.Id);
+                RequiredTable.Name = NewTable.Name;
+
+                var AddedHall = NewTable.Hall;
+                RequiredTable.Hall = new Hall();
+
+                var ExistedHall = db.Halls.SingleOrDefault(H => H.Id == NewTable.HallId);
+                RequiredTable.Hall = ExistedHall;
+                RequiredTable.HallId = ExistedHall.Id;
+
+                db.Tables.Update(RequiredTable);
+                db.SaveChanges();
+            }
+        }
     }
 }

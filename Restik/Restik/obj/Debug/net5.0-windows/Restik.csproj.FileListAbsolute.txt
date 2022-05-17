@@ -79,3 +79,7 @@ C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Vie
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddHallWindow.baml
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateHallWindow.g.cs
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateHallWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddTableWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddTableWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateTableWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateTableWindow.baml

@@ -14,5 +14,6 @@ namespace Restik.Models
         public int Id { get; set; }
         [MaxLength(100)]
         public string Type { get; set; }
+        List<Booking> Bookings { get; set; }
     }
 }

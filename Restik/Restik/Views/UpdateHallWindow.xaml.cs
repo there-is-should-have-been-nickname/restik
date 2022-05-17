@@ -27,10 +27,10 @@ namespace Restik.Views
         {
             InitializeComponent();
             CurrentHall = DbManager.GetHall(Name);
-            FillUserFields(CurrentHall);
+            FillHallFields(CurrentHall);
         }
 
-        private void FillUserFields(Hall hall)
+        private void FillHallFields(Hall hall)
         {
             NameTextBox.Text = hall.Name;
             PathTextBox.Text = hall.ImagePath;

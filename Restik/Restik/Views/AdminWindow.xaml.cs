@@ -25,6 +25,7 @@ namespace Restik.Views
             InitializeComponent();
             FillUsersComboBox();
             FillHallsComboBox();
+            FillTablesComboBox();
         }
 
         private void FillUsersComboBox()
@@ -47,16 +48,33 @@ namespace Restik.Views
         private void FillHallsComboBox()
         {
             HallsComboBox.Items.Clear();
-            foreach (var User in DbManager.GetHalls())
+            foreach (var Hall in DbManager.GetHalls())
             {
                 var NewItem = new ComboBoxItem();
                 NewItem.FontFamily = new FontFamily("Consolas");
                 NewItem.FontSize = 14;
                 NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
                 NewItem.VerticalContentAlignment = VerticalAlignment.Center;
-                NewItem.Content = User.Name;
+                NewItem.Content = Hall.Name;
 
                 HallsComboBox.Items.Add(NewItem);
+            }
+
+        }
+
+        private void FillTablesComboBox()
+        {
+            TablesComboBox.Items.Clear();
+            foreach (var Table in DbManager.GetTables())
+            {
+                var NewItem = new ComboBoxItem();
+                NewItem.FontFamily = new FontFamily("Consolas");
+                NewItem.FontSize = 14;
+                NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
+                NewItem.VerticalContentAlignment = VerticalAlignment.Center;
+                NewItem.Content = Table.Name;
+
+                TablesComboBox.Items.Add(NewItem);
             }
 
         }
@@ -98,6 +116,23 @@ namespace Restik.Views
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             ViewHelper.WindowsInteract(this, new UpdateHallWindow(HallsComboBox.Text));
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new AddTableWindow());
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new UpdateTableWindow(TablesComboBox.Text));
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            DbManager.DeleteTable(TablesComboBox.Text);
+            MessageBox.Show("Вы успешно удалили стол");
+            FillTablesComboBox();
         }
     }
 }

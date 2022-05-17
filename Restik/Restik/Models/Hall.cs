@@ -16,5 +16,6 @@ namespace Restik.Models
         public string Name { get; set; }
         [MaxLength(256)]
         public string ImagePath { get; set; }
+        public List<Table> Tables { get; set; }
     }
 }

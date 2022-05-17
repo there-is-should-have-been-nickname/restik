@@ -22,5 +22,7 @@ namespace Restik.Models
         public string Mail { get; set; }
         [MaxLength(64)]
         public string Password { get; set; }
+        public List<Booking> Bookings { get; set; }
+        public List<Payment> Payments { get; set; }
     }
 }

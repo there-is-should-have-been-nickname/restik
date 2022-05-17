@@ -22,5 +22,7 @@ namespace Restik.Models
         public int UserId { get; set; }
         public User User { get; set; }
         public List<Dish> Dishes { get; set; }
+        public List<Place> Places { get; set; }
+        public List<Payment> Payments { get; set; }
     }
 }
