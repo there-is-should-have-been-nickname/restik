@@ -24,6 +24,7 @@ namespace Restik.Views
         {
             InitializeComponent();
             FillUsersComboBox();
+            FillHallsComboBox();
         }
 
         private void FillUsersComboBox()
@@ -41,6 +42,23 @@ namespace Restik.Views
                 UsersComboBox.Items.Add(NewItem);
             }
             
+        }
+
+        private void FillHallsComboBox()
+        {
+            HallsComboBox.Items.Clear();
+            foreach (var User in DbManager.GetHalls())
+            {
+                var NewItem = new ComboBoxItem();
+                NewItem.FontFamily = new FontFamily("Consolas");
+                NewItem.FontSize = 14;
+                NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
+                NewItem.VerticalContentAlignment = VerticalAlignment.Center;
+                NewItem.Content = User.Name;
+
+                HallsComboBox.Items.Add(NewItem);
+            }
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -63,6 +81,23 @@ namespace Restik.Views
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             ViewHelper.WindowsInteract(this, new UpdateUserWindow(UsersComboBox.Text));
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new AddHallWindow());
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            DbManager.DeleteHall(HallsComboBox.Text);
+            MessageBox.Show("Вы успешно удалили зал");
+            FillHallsComboBox();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new UpdateHallWindow(HallsComboBox.Text));
         }
     }
 }

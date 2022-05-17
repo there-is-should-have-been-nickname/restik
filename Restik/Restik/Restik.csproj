@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Images\Dishes\" />
+    <Folder Include="Images\Halls\" />
   </ItemGroup>
 
 </Project>

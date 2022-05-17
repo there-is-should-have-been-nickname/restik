@@ -70,6 +70,55 @@ namespace Restik.Lib
             }
         }
 
+        public static List<Hall> GetHalls()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Halls.ToList();
+            }
+        }
+
+        public static Hall GetHall(string name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Halls.SingleOrDefault(H => H.Name == name);
+            }
+        }
+
+        public static void AddHall(Hall hall)
+        {
+            using (var db = new ApplicationContext())
+            {
+                db.Halls.Add(hall);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteHall(string Name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredHall = db.Halls.SingleOrDefault(H => H.Name == Name);
+                db.Halls.Remove(RequiredHall);
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateHall(Hall NewHall)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredHall = db.Halls.SingleOrDefault(H => H.Id == NewHall.Id);
+
+                RequiredHall.Name = NewHall.Name;
+                RequiredHall.ImagePath = NewHall.ImagePath;
+
+                db.Halls.Update(RequiredHall);
+                db.SaveChanges();
+            }
+        }
+
 
     }
 }
