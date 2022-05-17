@@ -33,15 +33,9 @@ namespace Restik.Views
         private void FillHallsComboBox()
         {
             HallsComboBox.Items.Clear();
-            foreach (var User in DbManager.GetHalls())
+            foreach (var Hall in DbManager.GetHalls())
             {
-                var NewItem = new ComboBoxItem();
-                NewItem.FontFamily = new FontFamily("Consolas");
-                NewItem.FontSize = 14;
-                NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
-                NewItem.VerticalContentAlignment = VerticalAlignment.Center;
-                NewItem.Content = User.Name;
-
+                var NewItem = ViewHelper.GetComboBoxItem(Hall.Name);
                 HallsComboBox.Items.Add(NewItem);
             }
 

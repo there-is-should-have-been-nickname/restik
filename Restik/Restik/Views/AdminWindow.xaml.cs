@@ -26,6 +26,7 @@ namespace Restik.Views
             FillUsersComboBox();
             FillHallsComboBox();
             FillTablesComboBox();
+            FillPlacesComboBox();
         }
 
         private void FillUsersComboBox()
@@ -33,13 +34,7 @@ namespace Restik.Views
             UsersComboBox.Items.Clear();
             foreach (var User in DbManager.GetUsers())
             {
-                var NewItem = new ComboBoxItem();
-                NewItem.FontFamily = new FontFamily("Consolas");
-                NewItem.FontSize = 14;
-                NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
-                NewItem.VerticalContentAlignment = VerticalAlignment.Center;
-                NewItem.Content = User.FullName;
-
+                var NewItem = ViewHelper.GetComboBoxItem(User.FullName);
                 UsersComboBox.Items.Add(NewItem);
             }
             
@@ -50,13 +45,7 @@ namespace Restik.Views
             HallsComboBox.Items.Clear();
             foreach (var Hall in DbManager.GetHalls())
             {
-                var NewItem = new ComboBoxItem();
-                NewItem.FontFamily = new FontFamily("Consolas");
-                NewItem.FontSize = 14;
-                NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
-                NewItem.VerticalContentAlignment = VerticalAlignment.Center;
-                NewItem.Content = Hall.Name;
-
+                var NewItem = ViewHelper.GetComboBoxItem(Hall.Name);
                 HallsComboBox.Items.Add(NewItem);
             }
 
@@ -67,14 +56,19 @@ namespace Restik.Views
             TablesComboBox.Items.Clear();
             foreach (var Table in DbManager.GetTables())
             {
-                var NewItem = new ComboBoxItem();
-                NewItem.FontFamily = new FontFamily("Consolas");
-                NewItem.FontSize = 14;
-                NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
-                NewItem.VerticalContentAlignment = VerticalAlignment.Center;
-                NewItem.Content = Table.Name;
-
+                var NewItem = ViewHelper.GetComboBoxItem(Table.Name);
                 TablesComboBox.Items.Add(NewItem);
+            }
+
+        }
+
+        private void FillPlacesComboBox()
+        {
+            PlacesComboBox.Items.Clear();
+            foreach (var Place in DbManager.GetPlaces())
+            {
+                var NewItem = ViewHelper.GetComboBoxItem(Place.Name);
+                PlacesComboBox.Items.Add(NewItem);
             }
 
         }
@@ -133,6 +127,23 @@ namespace Restik.Views
             DbManager.DeleteTable(TablesComboBox.Text);
             MessageBox.Show("Вы успешно удалили стол");
             FillTablesComboBox();
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new AddPlaceWindow());
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new UpdatePlaceWindow(PlacesComboBox.Text));
+        }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e)
+        {
+            DbManager.DeletePlace(PlacesComboBox.Text);
+            MessageBox.Show("Вы успешно удалили место");
+            FillPlacesComboBox();
         }
     }
 }

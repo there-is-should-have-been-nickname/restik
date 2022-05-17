@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Restik.Lib
 {
@@ -18,6 +20,17 @@ namespace Restik.Lib
         {
             windowShow.Show();
             windowClose.Close();
+        }
+
+        public static ComboBoxItem GetComboBoxItem(string content)
+        {
+            var NewItem = new ComboBoxItem();
+            NewItem.FontFamily = new FontFamily("Consolas");
+            NewItem.FontSize = 14;
+            NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
+            NewItem.VerticalContentAlignment = VerticalAlignment.Center;
+            NewItem.Content = content;
+            return NewItem;
         }
     }
 }

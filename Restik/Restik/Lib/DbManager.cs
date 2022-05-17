@@ -180,5 +180,111 @@ namespace Restik.Lib
                 db.SaveChanges();
             }
         }
+
+        public static List<Place> GetPlaces()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Places.ToList();
+            }
+        }
+
+        public static Place GetPlace(string name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Places.Include(P => P.Table).Include(P => P.Booking).SingleOrDefault(P => P.Name == name);
+            }
+        }
+
+        public static void AddPlace(Place place)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var AddedTable = place.Table;
+                place.Table = new Table();
+
+                var ExistedTable = db.Tables.SingleOrDefault(P => P.Id == AddedTable.Id);
+                place.Table = ExistedTable;
+
+                var AddedBooking = place.Booking;
+                place.Booking = null;
+
+                if (AddedBooking != null)
+                {
+                    var ExistedBooking = db.Bookings.SingleOrDefault(B => B.Id == AddedBooking.Id);
+                    place.Booking = ExistedBooking;
+                }
+
+
+                db.Places.Add(place);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeletePlace(string Name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredPlace = db.Places.SingleOrDefault(P => P.Name == Name);
+                db.Places.Remove(RequiredPlace);
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdatePlace(Place NewPlace)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredPlace = db.Places.SingleOrDefault(H => H.Id == NewPlace.Id);
+                RequiredPlace.Name = NewPlace.Name;
+                RequiredPlace.Price = NewPlace.Price;
+
+                var AddedTable = NewPlace.Table;
+                RequiredPlace.Table = new Table();
+
+                var ExistedTable = db.Tables.SingleOrDefault(T => T.Id == NewPlace.TableId);
+                RequiredPlace.Table = ExistedTable;
+                RequiredPlace.TableId = ExistedTable.Id;
+
+                var AddedBooking = NewPlace.Booking;
+                RequiredPlace.Booking = null;
+                RequiredPlace.BookingId = null;
+
+                if (AddedBooking != null) {
+                    var ExistedBooking = db.Bookings.SingleOrDefault(B => B.Id == NewPlace.BookingId);
+                    RequiredPlace.Booking = ExistedBooking;
+                    RequiredPlace.BookingId = ExistedBooking.Id;
+                }
+
+                db.Places.Update(RequiredPlace);
+                db.SaveChanges();
+            }
+        }
+
+        ///
+
+        public static List<Booking> GetBookings()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Bookings.Include(B => B.Event)
+                    .Include(B => B.User)
+                    .Include(B => B.Dishes)
+                    .Include(B => B.Places)
+                    .Include(B => B.Payments).ToList();
+            }
+        }
+        public static Booking GetBooking(string number)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Bookings.Include(B => B.Event)
+                    .Include(B => B.User)
+                    .Include(B => B.Dishes)
+                    .Include(B => B.Places)
+                    .Include(B => B.Payments).SingleOrDefault(B => B.Number == number);
+            }
+        }
     }
 }
