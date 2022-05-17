@@ -22,4 +22,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\Dishes\" />
+  </ItemGroup>
+
 </Project>

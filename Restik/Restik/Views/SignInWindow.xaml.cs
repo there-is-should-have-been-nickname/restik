@@ -42,7 +42,7 @@ namespace Restik.Views
                 MessageBox.Show("cashier");
             } else if (RequiredUser.Type == "admin")
             {
-                MessageBox.Show("admin");
+                ViewHelper.WindowsInteract(this, new AdminWindow());
             }
         }
 
