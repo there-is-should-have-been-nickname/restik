@@ -91,3 +91,7 @@ C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Vie
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddEventWindow.baml
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateEventWindow.g.cs
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateEventWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddCuisineWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateCuisineWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddCuisineWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateCuisineWindow.baml

@@ -64,6 +64,12 @@
 
         </ComboBox>
 
+        <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Margin="0, 300, 30, 0" Height="30" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Center" Cursor="Hand" Click="Button_Click_16">Добавить кухню</Button>
+        <Button Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2" Margin="0, 300, 5, 0" Height="30" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Center" Cursor="Hand" Click="Button_Click_17">Изменить</Button>
+        <Button Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2" Margin="5, 300, 0, 0" Height="30" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Center" Cursor="Hand" Click="Button_Click_18">Удалить</Button>
+        <ComboBox x:Name="CuisinesComboBox" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Margin="-25, 300, 5, 0" Height="30" VerticalAlignment="Top" FontFamily="Consolas" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand">
+
+        </ComboBox>
 
 
         <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Height="30" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Center" Cursor="Hand" Click="Button_Click_1">&#8592;</Button>

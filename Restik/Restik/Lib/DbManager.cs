@@ -334,5 +334,54 @@ namespace Restik.Lib
                 db.SaveChanges();
             }
         }
+
+        public static List<Cuisine> GetCuisines()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Cuisines.ToList();
+            }
+        }
+
+        public static Cuisine GetCuisine(string name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Cuisines.SingleOrDefault(C => C.Name == name);
+            }
+        }
+
+        public static void AddCuisine(Cuisine cuisine)
+        {
+            using (var db = new ApplicationContext())
+            {
+                db.Cuisines.Add(cuisine);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteCuisine(string Name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredCuisine = db.Cuisines.SingleOrDefault(C => C.Name == Name);
+                db.Cuisines.Remove(RequiredCuisine);
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateCuisine(Cuisine NewCuisine)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredCuisine = db.Cuisines.SingleOrDefault(C => C.Id == NewCuisine.Id);
+
+                RequiredCuisine.Name = NewCuisine.Name;
+                RequiredCuisine.Description = NewCuisine.Description;
+
+                db.Cuisines.Update(RequiredCuisine);
+                db.SaveChanges();
+            }
+        }
     }
 }

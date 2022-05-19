@@ -28,6 +28,7 @@ namespace Restik.Views
             FillTablesComboBox();
             FillPlacesComboBox();
             FillEventsComboBox();
+            FillCuisinesComboBox();
         }
 
         private void FillUsersComboBox()
@@ -81,6 +82,17 @@ namespace Restik.Views
             {
                 var NewItem = ViewHelper.GetComboBoxItem(Event.Type);
                 EventsComboBox.Items.Add(NewItem);
+            }
+
+        }
+
+        private void FillCuisinesComboBox()
+        {
+            CuisinesComboBox.Items.Clear();
+            foreach (var Cuis in DbManager.GetCuisines())
+            {
+                var NewItem = ViewHelper.GetComboBoxItem(Cuis.Name);
+                CuisinesComboBox.Items.Add(NewItem);
             }
 
         }
@@ -173,6 +185,23 @@ namespace Restik.Views
             DbManager.DeleteEvent(EventsComboBox.Text);
             MessageBox.Show("Вы успешно удалили событие");
             FillEventsComboBox();
+        }
+
+        private void Button_Click_16(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new AddCuisineWindow());
+        }
+
+        private void Button_Click_17(object sender, RoutedEventArgs e)
+        {
+            ViewHelper.WindowsInteract(this, new UpdateCuisineWindow(CuisinesComboBox.Text));
+        }
+
+        private void Button_Click_18(object sender, RoutedEventArgs e)
+        {
+            DbManager.DeleteCuisine(CuisinesComboBox.Text);
+            MessageBox.Show("Вы успешно удалили кухню");
+            FillCuisinesComboBox();
         }
     }
 }

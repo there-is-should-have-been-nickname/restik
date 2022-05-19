@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\AddCuisineWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\AddEventWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
     <Compile Update="Views\SignUpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UpdateCuisineWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UpdateEventWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -48,6 +54,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\AddCuisineWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\AddEventWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -73,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UpdateCuisineWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UpdateEventWindow.xaml">
