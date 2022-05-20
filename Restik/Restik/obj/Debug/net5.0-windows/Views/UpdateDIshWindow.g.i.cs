@@ -77,7 +77,7 @@ namespace Restik.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Restik;V1.0.0.0;component/views/updatedishwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Restik;component/views/updatedishwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\UpdateDIshWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

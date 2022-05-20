@@ -41,10 +41,7 @@ namespace Restik.Views
                 HallId = AddedHall.Id,
                 Hall = AddedHall
             };
-
-            DbManager.AddTable(NewTable);
-            MessageBox.Show("Вы успешно добавили стол");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddItem<Restik.Models.Table>(DbManager.AddTable, NewTable, "Вы успешно добавили стол", this);
         }
     }
 }

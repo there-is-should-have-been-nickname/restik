@@ -42,9 +42,7 @@ namespace Restik.Views
                 Password = PasswordTextBox.Text
             };
 
-            DbManager.AddUser(NewUser);
-            MessageBox.Show("Вы успешно добавили пользователя");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddItem<User>(DbManager.AddUser, NewUser, "Вы успешно добавили пользователя", this);
         }
     }
 }

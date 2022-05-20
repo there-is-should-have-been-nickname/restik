@@ -1,4 +1,5 @@
 ﻿using Restik.Lib;
+using Restik.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace Restik.Views
             var AddedTable = DbManager.GetTable(TablesComboBox.Text);
             var AddedBooking = DbManager.GetBooking(BookingsComboBox.Text);
 
-            var NewPlace = new Restik.Models.Place
+            var NewPlace = new Place
             {
                 Name = NameTextBox.Text,
                 Price = Convert.ToInt32(PriceTextBox.Text),
@@ -51,11 +52,8 @@ namespace Restik.Views
                 NewPlace.BookingId = AddedBooking.Id;
             }
 
-            
 
-            DbManager.AddPlace(NewPlace);
-            MessageBox.Show("Вы успешно добавили место");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddItem<Place>(DbManager.AddPlace, NewPlace, "Вы успешно добавили место", this);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

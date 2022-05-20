@@ -35,12 +35,7 @@ namespace Restik.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                PathTextBox.Text = openFileDialog.FileName;
-            }
+            ViewHelper.ShowDialog(PathTextBox);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,9 +50,7 @@ namespace Restik.Views
                 Cuisine = AddedCuisine
             };
 
-            DbManager.AddDish(NewDish);
-            MessageBox.Show("Вы успешно добавили блюдо");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddItem<Dish>(DbManager.AddDish, NewDish, "Вы успешно добавили блюдо", this);
         }
     }
 }

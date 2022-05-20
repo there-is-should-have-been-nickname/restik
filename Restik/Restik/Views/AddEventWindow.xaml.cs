@@ -38,9 +38,7 @@ namespace Restik.Views
                 Type = TypeTextBox.Text
             };
 
-            DbManager.AddEvent(NewEvent);
-            MessageBox.Show("Вы успешно добавили событие");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddItem<Event>(DbManager.AddEvent, NewEvent, "Вы успешно добавили событие", this);
         }
     }
 }

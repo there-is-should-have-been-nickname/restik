@@ -39,9 +39,7 @@ namespace Restik.Views
                 Description = DescriptionTextBox.Text
             };
 
-            DbManager.AddCuisine(NewCuisine);
-            MessageBox.Show("Вы успешно добавили кухню");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddItem<Cuisine>(DbManager.AddCuisine, NewCuisine, "Вы успешно добавили кухню", this);
         }
     }
 }
