@@ -128,6 +128,14 @@ namespace Restik.Lib
             }
         }
 
+        public static List<Table> GetTables(string HallName)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Tables.Include(T => T.Hall).Where(T => T.Hall.Name == HallName).ToList();
+            }
+        }
+
         public static Table GetTable(string name)
         {
             using (var db = new ApplicationContext())
@@ -187,6 +195,29 @@ namespace Restik.Lib
             {
                 return db.Places.ToList();
             }
+        }
+
+        public static List<Place> GetPlaces(string TableName)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Places.Include(T => T.Table).Where(P => P.Table.Name == TableName).ToList();
+            }
+        }
+
+        public static List<Place> GetPlaces(List<string> names)
+        {
+            var Result = new List<Place>();
+            using (var db = new ApplicationContext())
+            {
+                foreach (var Name in names)
+                {
+                    var Place = db.Places.Include(P => P.Table).Include(P => P.Booking).SingleOrDefault(P => P.Name == Name);
+                    Result.Add(Place);
+                }
+            }
+
+            return Result;
         }
 
         public static Place GetPlace(string name)
@@ -285,6 +316,54 @@ namespace Restik.Lib
                     .Include(B => B.Places)
                     .Include(B => B.Payments).SingleOrDefault(B => B.Number == number);
             }
+        }
+
+        public static void AddBooking(Booking booking)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var AddedUser = booking.User;
+                booking.User = new User();
+
+                var ExistedUser = db.Users.SingleOrDefault(U => U.Id == AddedUser.Id);
+                booking.User = ExistedUser;
+
+                var AddedEvent = booking.Event;
+                booking.Event = null;
+
+                if (AddedEvent != null)
+                {
+                    var ExistedEvent = db.Events.SingleOrDefault(E => E.Id == AddedEvent.Id);
+                    booking.Event = ExistedEvent;
+                }
+
+                var AddedPlaces = booking.Places;
+                booking.Places = new List<Place>();
+
+                foreach (var Item in AddedPlaces)
+                {
+                    var ExistedPlace = db.Places.SingleOrDefault(P => P.Id == Item.Id);
+                    booking.Places.Add(ExistedPlace);
+                }
+
+                var AddedDishes = booking.Dishes;
+                booking.Dishes = new List<Dish>();
+
+                foreach (var Item in AddedDishes)
+                {
+                    var ExistedDish = db.Dishes.SingleOrDefault(D => D.Id == Item.Id);
+                    booking.Dishes.Add(ExistedDish);
+                }
+
+                db.Bookings.Add(booking);
+                db.SaveChanges();
+
+                var ExistedBooking = db.Bookings.SingleOrDefault(B => B.Number == booking.Number);
+                var ExistedPayment = db.Payments.SingleOrDefault(P => P.BookingId == ExistedBooking.Id);
+                db.Payments.Update(ExistedPayment);
+                db.SaveChanges();
+            }
+                
         }
 
         ///
@@ -390,6 +469,29 @@ namespace Restik.Lib
             {
                 return db.Dishes.ToList();
             }
+        }
+
+        public static List<Dish> GetDishes(string CuisineName)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Dishes.Include(D => D.Cuisine).Where(D => D.Cuisine.Name == CuisineName).ToList();
+            }
+        }
+
+        public static List<Dish> GetDishes(List<string> names)
+        {
+            var Result = new List<Dish>();
+            using (var db = new ApplicationContext())
+            {
+                foreach (var Name in names)
+                {
+                    var Dish = db.Dishes.Include(D => D.Cuisine).SingleOrDefault(D => D.Name == Name);
+                    Result.Add(Dish);
+                }
+            }
+
+            return Result;
         }
 
         public static Dish GetDish(string name)

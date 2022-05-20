@@ -31,5 +31,18 @@ namespace Restik.Lib
             ViewHelper.ShowMessage(MessageText);
             ViewHelper.WindowsInteract(WindowClose, WindowOpen);
         }
+
+        public static string GenerateNumber()
+        {
+            var rand = new Random();
+            var number = "";
+
+            for (int i = 0; i < 9; ++i)
+            {
+                number += rand.Next(0, 9).ToString();
+            }
+
+            return number;
+        }
     }
 }

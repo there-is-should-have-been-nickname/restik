@@ -77,7 +77,7 @@ namespace Restik.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Restik;V1.0.0.0;component/views/signinwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Restik;component/views/signinwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\SignInWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

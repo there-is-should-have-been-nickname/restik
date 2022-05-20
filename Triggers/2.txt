@@ -16,4 +16,4 @@ BEGIN
 	UPDATE Payments
 	SET Cost = @price
 	WHERE BookingId = @bookingId;
-END;
+END; 

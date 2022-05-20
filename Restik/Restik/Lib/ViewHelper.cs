@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Restik.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace Restik.Lib
@@ -34,6 +36,37 @@ namespace Restik.Lib
             return NewItem;
         }
 
+        public static Button GetButtonItem(string content, SolidColorBrush color)
+        {
+            var NewItem = new Button();
+            NewItem.FontFamily = new FontFamily("Consolas");
+            NewItem.FontSize = 10;
+            NewItem.Width = 40;
+            NewItem.Height = 40;
+            NewItem.Margin = new Thickness(5);
+            NewItem.Background = color;
+
+            if (color == Brushes.IndianRed)
+            {
+                NewItem.IsEnabled = false;
+            }
+
+            NewItem.HorizontalContentAlignment = HorizontalAlignment.Center;
+            NewItem.VerticalContentAlignment = VerticalAlignment.Center;
+            NewItem.Content = content;
+            NewItem.Click += new RoutedEventHandler(ButtonClick);
+            return NewItem;
+        }
+
+        private static void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button.IsEnabled)
+            {
+                button.Background = button.Background == Brushes.Gray ? Brushes.ForestGreen : Brushes.Gray;
+            }
+        }
+
         public static void FillUsersComboBox(ComboBox UsersComboBox)
         {
             UsersComboBox.Items.Clear();
@@ -60,6 +93,17 @@ namespace Restik.Lib
         {
             TablesComboBox.Items.Clear();
             foreach (var Table in DbManager.GetTables())
+            {
+                var NewItem = GetComboBoxItem(Table.Name);
+                TablesComboBox.Items.Add(NewItem);
+            }
+
+        }
+
+        public static void FillTablesComboBox(ComboBox TablesComboBox, List<Models.Table> Tables)
+        {
+            TablesComboBox.Items.Clear();
+            foreach (var Table in Tables)
             {
                 var NewItem = GetComboBoxItem(Table.Name);
                 TablesComboBox.Items.Add(NewItem);
@@ -121,7 +165,18 @@ namespace Restik.Lib
             }
 
         }
-        
+
+        public static void FillDishesComboBox(ComboBox DishesComboBox, List<Dish> Dishes)
+        {
+            DishesComboBox.Items.Clear();
+            foreach (var Dish in Dishes)
+            {
+                var NewItem = GetComboBoxItem(Dish.Name);
+                DishesComboBox.Items.Add(NewItem);
+            }
+
+        }
+
         public static void ShowDialog(TextBox textBox)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -135,6 +190,52 @@ namespace Restik.Lib
         public static void ShowMessage(string text)
         {
             MessageBox.Show(text);
+        }
+
+        public static void DrawPlaces(WrapPanel WrapPanel, List<Place> Places)
+        {
+            WrapPanel.Children.Clear();
+            foreach (var Place in Places)
+            {
+                var color = Brushes.Gray;
+                if (Place.Booking != null)
+                {
+                    color = Brushes.IndianRed;
+                }
+
+                var button = GetButtonItem("#" + Place.Name.Split(' ')[1] + "\n" + Place.Price.ToString() + " р.", color);
+                WrapPanel.Children.Add(button);
+            }
+        }
+
+        public static List<string> GetPlaceNames(string str)
+        {
+            var PlaceNumbers = str.Remove(0, 6).Split(", ").ToList();
+            var Result = new List<string>();
+
+            foreach (var Number in PlaceNumbers)
+            {
+                if (!string.IsNullOrWhiteSpace(Number))
+                {
+                    Result.Add("Место " + Number);
+                }
+            }
+            return Result;
+        }
+
+        public static List<string> GetDishesNames(string str)
+        {
+            var DishNames = str.Remove(0, 6).Split(", ").ToList();
+            var Result = new List<string>();
+
+            foreach (var Name in DishNames)
+            {
+                if (!string.IsNullOrWhiteSpace(Name))
+                {
+                    Result.Add(Name);
+                }
+            }
+            return Result;
         }
     }
 }
