@@ -26,21 +26,9 @@ namespace Restik.Views
         {
             InitializeComponent();
             CurrentTable = DbManager.GetTable(name);
-            FillHallsComboBox();
+            ViewHelper.FillHallsComboBox(HallsComboBox);
             FillTableFields(CurrentTable);
         }
-
-        private void FillHallsComboBox()
-        {
-            HallsComboBox.Items.Clear();
-            foreach (var Hall in DbManager.GetHalls())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Hall.Name);
-                HallsComboBox.Items.Add(NewItem);
-            }
-
-        }
-
         private void FillTableFields(Models.Table table)
         {
             NameTextBox.Text = table.Name;

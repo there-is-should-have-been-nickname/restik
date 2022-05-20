@@ -23,90 +23,13 @@ namespace Restik.Views
         public AdminWindow()
         {
             InitializeComponent();
-            FillUsersComboBox();
-            FillHallsComboBox();
-            FillTablesComboBox();
-            FillPlacesComboBox();
-            FillEventsComboBox();
-            FillCuisinesComboBox();
-            FillDishesComboBox();
-        }
-
-        private void FillUsersComboBox()
-        {
-            UsersComboBox.Items.Clear();
-            foreach (var User in DbManager.GetUsers())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(User.FullName);
-                UsersComboBox.Items.Add(NewItem);
-            }
-            
-        }
-
-        private void FillHallsComboBox()
-        {
-            HallsComboBox.Items.Clear();
-            foreach (var Hall in DbManager.GetHalls())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Hall.Name);
-                HallsComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillTablesComboBox()
-        {
-            TablesComboBox.Items.Clear();
-            foreach (var Table in DbManager.GetTables())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Table.Name);
-                TablesComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillPlacesComboBox()
-        {
-            PlacesComboBox.Items.Clear();
-            foreach (var Place in DbManager.GetPlaces())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Place.Name);
-                PlacesComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillEventsComboBox()
-        {
-            EventsComboBox.Items.Clear();
-            foreach (var Event in DbManager.GetEvents())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Event.Type);
-                EventsComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillCuisinesComboBox()
-        {
-            CuisinesComboBox.Items.Clear();
-            foreach (var Cuis in DbManager.GetCuisines())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Cuis.Name);
-                CuisinesComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillDishesComboBox()
-        {
-            DishesComboBox.Items.Clear();
-            foreach (var Dish in DbManager.GetDishes())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Dish.Name);
-                DishesComboBox.Items.Add(NewItem);
-            }
-
+            ViewHelper.FillUsersComboBox(UsersComboBox);
+            ViewHelper.FillHallsComboBox(HallsComboBox);
+            ViewHelper.FillTablesComboBox(TablesComboBox);
+            ViewHelper.FillPlacesComboBox(PlacesComboBox);
+            ViewHelper.FillEventsComboBox(EventsComboBox);
+            ViewHelper.FillCuisinesComboBox(CuisinesComboBox);
+            ViewHelper.FillDishesComboBox(DishesComboBox);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -123,7 +46,7 @@ namespace Restik.Views
         {
             DbManager.DeleteUser(UsersComboBox.Text);
             MessageBox.Show("Вы успешно удалили пользователя");
-            FillUsersComboBox();
+            ViewHelper.FillUsersComboBox(UsersComboBox);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -140,7 +63,7 @@ namespace Restik.Views
         {
             DbManager.DeleteHall(HallsComboBox.Text);
             MessageBox.Show("Вы успешно удалили зал");
-            FillHallsComboBox();
+            ViewHelper.FillHallsComboBox(HallsComboBox);
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -162,7 +85,7 @@ namespace Restik.Views
         {
             DbManager.DeleteTable(TablesComboBox.Text);
             MessageBox.Show("Вы успешно удалили стол");
-            FillTablesComboBox();
+            ViewHelper.FillTablesComboBox(TablesComboBox);
         }
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
@@ -179,7 +102,7 @@ namespace Restik.Views
         {
             DbManager.DeletePlace(PlacesComboBox.Text);
             MessageBox.Show("Вы успешно удалили место");
-            FillPlacesComboBox();
+            ViewHelper.FillPlacesComboBox(PlacesComboBox);
         }
 
         private void Button_Click_13(object sender, RoutedEventArgs e)
@@ -196,7 +119,7 @@ namespace Restik.Views
         {
             DbManager.DeleteEvent(EventsComboBox.Text);
             MessageBox.Show("Вы успешно удалили событие");
-            FillEventsComboBox();
+            ViewHelper.FillEventsComboBox(EventsComboBox);
         }
 
         private void Button_Click_16(object sender, RoutedEventArgs e)
@@ -213,7 +136,7 @@ namespace Restik.Views
         {
             DbManager.DeleteCuisine(CuisinesComboBox.Text);
             MessageBox.Show("Вы успешно удалили кухню");
-            FillCuisinesComboBox();
+            ViewHelper.FillCuisinesComboBox(CuisinesComboBox);
         }
 
         private void Button_Click_19(object sender, RoutedEventArgs e)
@@ -230,7 +153,7 @@ namespace Restik.Views
         {
             DbManager.DeleteDish(DishesComboBox.Text);
             MessageBox.Show("Вы успешно удалили блюдо");
-            FillDishesComboBox();
+            ViewHelper.FillDishesComboBox(DishesComboBox);
         }
     }
 }

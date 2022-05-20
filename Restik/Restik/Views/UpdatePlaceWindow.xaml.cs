@@ -26,33 +26,10 @@ namespace Restik.Views
         {
             InitializeComponent();
             CurrentPlace = DbManager.GetPlace(name);
-            FillHallsComboBox();
-            FillBookingsComboBox();
+            ViewHelper.FillTablesComboBox(TablesComboBox);
+            ViewHelper.FillBookingsComboBox(BookingsComboBox);
             FillPlaceFields(CurrentPlace);
         }
-
-        private void FillHallsComboBox()
-        {
-            TablesComboBox.Items.Clear();
-            foreach (var Table in DbManager.GetTables())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Table.Name);
-                TablesComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillBookingsComboBox()
-        {
-            BookingsComboBox.Items.Clear();
-            foreach (var Book in DbManager.GetBookings())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Book.Number);
-                BookingsComboBox.Items.Add(NewItem);
-            }
-
-        }
-
         private void FillPlaceFields(Place place)
         {
             NameTextBox.Text = place.Name;

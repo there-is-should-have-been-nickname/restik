@@ -27,19 +27,8 @@ namespace Restik.Views
         {
             InitializeComponent();
             CurrentDish = DbManager.GetDish(name);
-            FillCuisinesComboBox();
+            ViewHelper.FillCuisinesComboBox(CuisinesComboBox);
             FillDishFields(CurrentDish);
-        }
-
-        private void FillCuisinesComboBox()
-        {
-            CuisinesComboBox.Items.Clear();
-            foreach (var Cuis in DbManager.GetCuisines())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Cuis.Name);
-                CuisinesComboBox.Items.Add(NewItem);
-            }
-
         }
 
         private void FillDishFields(Dish dish)
@@ -56,12 +45,7 @@ namespace Restik.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                PathTextBox.Text = openFileDialog.FileName;
-            }
+            ViewHelper.ShowDialog(PathTextBox);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

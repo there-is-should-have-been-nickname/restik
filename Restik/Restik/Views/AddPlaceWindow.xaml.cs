@@ -23,30 +23,8 @@ namespace Restik.Views
         public AddPlaceWindow()
         {
             InitializeComponent();
-            FillHallsComboBox();
-            FillBookingsComboBox();
-        }
-
-        private void FillHallsComboBox()
-        {
-            TablesComboBox.Items.Clear();
-            foreach (var Table in DbManager.GetTables())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Table.Name);
-                TablesComboBox.Items.Add(NewItem);
-            }
-
-        }
-
-        private void FillBookingsComboBox()
-        {
-            BookingsComboBox.Items.Clear();
-            foreach (var Book in DbManager.GetBookings())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Book.Number);
-                BookingsComboBox.Items.Add(NewItem);
-            }
-
+            ViewHelper.FillTablesComboBox(TablesComboBox);
+            ViewHelper.FillBookingsComboBox(BookingsComboBox);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

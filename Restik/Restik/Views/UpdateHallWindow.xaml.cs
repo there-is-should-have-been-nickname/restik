@@ -38,12 +38,7 @@ namespace Restik.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                PathTextBox.Text = openFileDialog.FileName;
-            }
+            ViewHelper.ShowDialog(PathTextBox);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

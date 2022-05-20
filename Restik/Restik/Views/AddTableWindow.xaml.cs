@@ -23,18 +23,7 @@ namespace Restik.Views
         public AddTableWindow()
         {
             InitializeComponent();
-            FillHallsComboBox();
-        }
-
-        private void FillHallsComboBox()
-        {
-            HallsComboBox.Items.Clear();
-            foreach (var Hall in DbManager.GetHalls())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Hall.Name);
-                HallsComboBox.Items.Add(NewItem);
-            }
-
+            ViewHelper.FillHallsComboBox(HallsComboBox);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

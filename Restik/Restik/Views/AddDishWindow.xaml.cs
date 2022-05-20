@@ -25,18 +25,7 @@ namespace Restik.Views
         public AddDishWindow()
         {
             InitializeComponent();
-            FillCuisinesComboBox();
-        }
-
-        private void FillCuisinesComboBox()
-        {
-            CuisinesComboBox.Items.Clear();
-            foreach (var Cuis in DbManager.GetCuisines())
-            {
-                var NewItem = ViewHelper.GetComboBoxItem(Cuis.Name);
-                CuisinesComboBox.Items.Add(NewItem);
-            }
-
+            ViewHelper.FillCuisinesComboBox(CuisinesComboBox);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
