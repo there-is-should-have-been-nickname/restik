@@ -18,11 +18,18 @@ namespace Restik.Lib
             ViewMethod.Invoke(ViewComboBox);
         }
 
-        public static void AddItem<T>(Action<T> DbAddMethod, T Item, string MessageText, Window WindowClose)
+        public static void AddOrUpdateItem<T>(Action<T> DbAddMethod, T Item, string MessageText, Window WindowClose)
         {
             DbAddMethod.Invoke(Item);
             ViewHelper.ShowMessage(MessageText);
             ViewHelper.WindowsInteract(WindowClose, new AdminWindow());
+        }
+
+        public static void AddOrUpdateItem<T>(Action<T> DbAddMethod, T Item, string MessageText, Window WindowClose, Window WindowOpen)
+        {
+            DbAddMethod.Invoke(Item);
+            ViewHelper.ShowMessage(MessageText);
+            ViewHelper.WindowsInteract(WindowClose, WindowOpen);
         }
     }
 }

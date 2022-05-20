@@ -42,7 +42,7 @@ namespace Restik.Views
                 Password = PasswordTextBox.Text
             };
 
-            FuncHelper.AddItem<User>(DbManager.AddUser, NewUser, "Вы успешно добавили пользователя", this);
+            FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно добавили пользователя", this);
         }
     }
 }

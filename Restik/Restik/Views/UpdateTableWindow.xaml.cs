@@ -52,9 +52,7 @@ namespace Restik.Views
                 Hall = NewHall
             };
 
-            DbManager.UpdateTable(UpdatedTable);
-            MessageBox.Show("Вы успешно изменили стол");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddOrUpdateItem<Restik.Models.Table>(DbManager.UpdateTable, UpdatedTable, "Вы успешно обновили стол", this);
         }
     }
 }

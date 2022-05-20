@@ -36,8 +36,7 @@ namespace Restik.Views
                 Password = PasswordTextBox.Text
             };
 
-            DbManager.AddUser(NewUser);
-            MessageBox.Show("Вы успешно зарегистрировались");
+            FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно зарегистрировались", this, new MainWindow());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

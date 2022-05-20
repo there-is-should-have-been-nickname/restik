@@ -48,10 +48,7 @@ namespace Restik.Views
                 Name = NameTextBox.Text,
                 Description = DescriptionTextBox.Text
             };
-
-            DbManager.UpdateCuisine(UpdatedCuisine);
-            MessageBox.Show("Вы успешно обновили кухню");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddOrUpdateItem<Cuisine>(DbManager.UpdateCuisine, UpdatedCuisine, "Вы успешно обновили кухню", this);
         }
     }
 }

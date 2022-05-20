@@ -60,10 +60,7 @@ namespace Restik.Views
                 CuisineId = NewCuisine.Id,
                 Cuisine = NewCuisine
             };
-
-            DbManager.UpdateDish(UpdatedDish);
-            MessageBox.Show("Вы успешно изменили блюдо");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddOrUpdateItem<Dish>(DbManager.UpdateDish, UpdatedDish, "Вы успешно обновили блюдо", this);
         }
     }
 }

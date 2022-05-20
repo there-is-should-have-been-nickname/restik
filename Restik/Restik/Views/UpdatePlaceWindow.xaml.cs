@@ -70,9 +70,7 @@ namespace Restik.Views
                 UpdatedPlace.Booking = null;
             }
 
-            DbManager.UpdatePlace(UpdatedPlace);
-            MessageBox.Show("Вы успешно изменили место");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddOrUpdateItem<Place>(DbManager.UpdatePlace, UpdatedPlace, "Вы успешно обновили место", this);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

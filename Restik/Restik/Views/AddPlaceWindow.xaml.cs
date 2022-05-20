@@ -53,7 +53,7 @@ namespace Restik.Views
             }
 
 
-            FuncHelper.AddItem<Place>(DbManager.AddPlace, NewPlace, "Вы успешно добавили место", this);
+            FuncHelper.AddOrUpdateItem<Place>(DbManager.AddPlace, NewPlace, "Вы успешно добавили место", this);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

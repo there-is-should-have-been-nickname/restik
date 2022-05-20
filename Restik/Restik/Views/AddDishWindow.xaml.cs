@@ -50,7 +50,7 @@ namespace Restik.Views
                 Cuisine = AddedCuisine
             };
 
-            FuncHelper.AddItem<Dish>(DbManager.AddDish, NewDish, "Вы успешно добавили блюдо", this);
+            FuncHelper.AddOrUpdateItem<Dish>(DbManager.AddDish, NewDish, "Вы успешно добавили блюдо", this);
         }
     }
 }

@@ -50,9 +50,7 @@ namespace Restik.Views
                 ImagePath = PathTextBox.Text
             };
 
-            DbManager.UpdateHall(NewHall);
-            MessageBox.Show("Вы успешно изменили зал");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddOrUpdateItem<Hall>(DbManager.UpdateHall, NewHall, "Вы успешно обновили зал", this);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

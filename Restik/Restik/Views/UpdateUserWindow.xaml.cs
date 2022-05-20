@@ -55,9 +55,7 @@ namespace Restik.Views
                 Password = PasswordTextBox.Text
             };
 
-            DbManager.UpdateUser(UpdatedUser);
-            MessageBox.Show("Вы успешно обновили пользователя");
-            ViewHelper.WindowsInteract(this, new AdminWindow());
+            FuncHelper.AddOrUpdateItem<User>(DbManager.UpdateUser, UpdatedUser, "Вы успешно обновили пользователя", this);
         }
     }
 }

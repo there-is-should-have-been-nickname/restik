@@ -41,7 +41,7 @@ namespace Restik.Views
                 HallId = AddedHall.Id,
                 Hall = AddedHall
             };
-            FuncHelper.AddItem<Restik.Models.Table>(DbManager.AddTable, NewTable, "Вы успешно добавили стол", this);
+            FuncHelper.AddOrUpdateItem<Restik.Models.Table>(DbManager.AddTable, NewTable, "Вы успешно добавили стол", this);
         }
     }
 }
