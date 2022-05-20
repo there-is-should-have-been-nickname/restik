@@ -44,9 +44,7 @@ namespace Restik.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            DbManager.DeleteUser(UsersComboBox.Text);
-            MessageBox.Show("Вы успешно удалили пользователя");
-            ViewHelper.FillUsersComboBox(UsersComboBox);
+            FuncHelper.DeleteItem(DbManager.DeleteUser, ViewHelper.FillUsersComboBox, UsersComboBox, "Вы успешно удалили пользователя");
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -61,9 +59,7 @@ namespace Restik.Views
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            DbManager.DeleteHall(HallsComboBox.Text);
-            MessageBox.Show("Вы успешно удалили зал");
-            ViewHelper.FillHallsComboBox(HallsComboBox);
+            FuncHelper.DeleteItem(DbManager.DeleteHall, ViewHelper.FillHallsComboBox, HallsComboBox, "Вы успешно удалили зал");
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -83,9 +79,7 @@ namespace Restik.Views
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            DbManager.DeleteTable(TablesComboBox.Text);
-            MessageBox.Show("Вы успешно удалили стол");
-            ViewHelper.FillTablesComboBox(TablesComboBox);
+            FuncHelper.DeleteItem(DbManager.DeleteTable, ViewHelper.FillTablesComboBox, TablesComboBox, "Вы успешно удалили стол");
         }
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
@@ -100,9 +94,7 @@ namespace Restik.Views
 
         private void Button_Click_12(object sender, RoutedEventArgs e)
         {
-            DbManager.DeletePlace(PlacesComboBox.Text);
-            MessageBox.Show("Вы успешно удалили место");
-            ViewHelper.FillPlacesComboBox(PlacesComboBox);
+            FuncHelper.DeleteItem(DbManager.DeletePlace, ViewHelper.FillPlacesComboBox, PlacesComboBox, "Вы успешно удалили место");
         }
 
         private void Button_Click_13(object sender, RoutedEventArgs e)
@@ -117,9 +109,7 @@ namespace Restik.Views
 
         private void Button_Click_15(object sender, RoutedEventArgs e)
         {
-            DbManager.DeleteEvent(EventsComboBox.Text);
-            MessageBox.Show("Вы успешно удалили событие");
-            ViewHelper.FillEventsComboBox(EventsComboBox);
+            FuncHelper.DeleteItem(DbManager.DeleteEvent, ViewHelper.FillEventsComboBox, EventsComboBox, "Вы успешно удалили событие");
         }
 
         private void Button_Click_16(object sender, RoutedEventArgs e)
@@ -134,9 +124,7 @@ namespace Restik.Views
 
         private void Button_Click_18(object sender, RoutedEventArgs e)
         {
-            DbManager.DeleteCuisine(CuisinesComboBox.Text);
-            MessageBox.Show("Вы успешно удалили кухню");
-            ViewHelper.FillCuisinesComboBox(CuisinesComboBox);
+            FuncHelper.DeleteItem(DbManager.DeleteCuisine, ViewHelper.FillCuisinesComboBox, CuisinesComboBox, "Вы успешно удалили кухню");
         }
 
         private void Button_Click_19(object sender, RoutedEventArgs e)
@@ -151,9 +139,7 @@ namespace Restik.Views
 
         private void Button_Click_21(object sender, RoutedEventArgs e)
         {
-            DbManager.DeleteDish(DishesComboBox.Text);
-            MessageBox.Show("Вы успешно удалили блюдо");
-            ViewHelper.FillDishesComboBox(DishesComboBox);
+            FuncHelper.DeleteItem(DbManager.DeleteDish, ViewHelper.FillDishesComboBox, DishesComboBox, "Вы успешно удалили блюдо");
         }
     }
 }

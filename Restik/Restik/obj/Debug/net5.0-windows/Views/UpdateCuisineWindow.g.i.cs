@@ -69,7 +69,7 @@ namespace Restik.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Restik;component/views/updatecuisinewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Restik;V1.0.0.0;component/views/updatecuisinewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\UpdateCuisineWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

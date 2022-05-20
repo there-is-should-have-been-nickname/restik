@@ -131,5 +131,10 @@ namespace Restik.Lib
                 textBox.Text = openFileDialog.FileName;
             }
         }
+
+        public static void ShowMessage(string text)
+        {
+            MessageBox.Show(text);
+        }
     }
 }
