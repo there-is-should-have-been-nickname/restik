@@ -383,5 +383,66 @@ namespace Restik.Lib
                 db.SaveChanges();
             }
         }
+
+        public static List<Dish> GetDishes()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Dishes.ToList();
+            }
+        }
+
+        public static Dish GetDish(string name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Dishes.Include(D => D.Cuisine).SingleOrDefault(D => D.Name == name);
+            }
+        }
+
+        public static void AddDish(Dish dish)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var AddedCuisine = dish.Cuisine;
+                dish.Cuisine = new Cuisine();
+
+                var ExistedCuisine = db.Cuisines.SingleOrDefault(C => C.Id == AddedCuisine.Id);
+                dish.Cuisine = ExistedCuisine;
+
+                db.Dishes.Add(dish);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteDish(string Name)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredDish = db.Dishes.SingleOrDefault(D => D.Name == Name);
+                db.Dishes.Remove(RequiredDish);
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateDish(Dish NewDish)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredDish = db.Dishes.SingleOrDefault(D => D.Id == NewDish.Id);
+                RequiredDish.Name = NewDish.Name;
+                RequiredDish.ImagePath = NewDish.ImagePath;
+
+                var AddedCuisine = NewDish.Cuisine;
+                RequiredDish.Cuisine = new Cuisine();
+
+                var ExistedCuisine = db.Cuisines.SingleOrDefault(C => C.Id == NewDish.CuisineId);
+                RequiredDish.Cuisine = ExistedCuisine;
+                RequiredDish.CuisineId = ExistedCuisine.Id;
+
+                db.Dishes.Update(RequiredDish);
+                db.SaveChanges();
+            }
+        }
     }
 }
