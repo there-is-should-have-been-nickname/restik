@@ -28,15 +28,23 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewUser = new User { 
-                Type = "user", 
-                FullName = FullNameTextBox.Text, 
-                Phone = PhoneTextBox.Text,  
-                Mail = MailTextBox.Text,
-                Password = PasswordTextBox.Text
-            };
+            if ((bool)CapchaCheckbox.IsChecked)
+            {
+                var NewUser = new User
+                {
+                    Type = "user",
+                    FullName = FullNameTextBox.Text,
+                    Phone = PhoneTextBox.Text,
+                    Mail = MailTextBox.Text,
+                    Password = PasswordTextBox.Text
+                };
 
-            FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно зарегистрировались", this, new MainWindow());
+                FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно зарегистрировались", this, new MainWindow());
+
+            } else
+            {
+                ViewHelper.ShowMessage("Не пройдена капча");
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

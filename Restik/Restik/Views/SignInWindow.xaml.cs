@@ -29,21 +29,31 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var RequiredUser = DbManager.GetUser(MailTextBox.Text, PasswordTextBox.Text);
+            if ((bool)CapchaCheckbox.IsChecked)
+            {
+                var RequiredUser = DbManager.GetUser(MailTextBox.Text, PasswordTextBox.Text);
 
-            if (RequiredUser == null)
+                if (RequiredUser == null)
+                {
+                    ViewHelper.ShowMessage("Пользователя с такими данными нет");
+                }
+                else if (RequiredUser.Type == "user")
+                {
+                    ViewHelper.WindowsInteract(this, new AddBookingWindow(RequiredUser));
+                }
+                else if (RequiredUser.Type == "cashier")
+                {
+                    MessageBox.Show("cashier");
+                }
+                else if (RequiredUser.Type == "admin")
+                {
+                    ViewHelper.WindowsInteract(this, new AdminWindow());
+                }
+            } else
             {
-                MessageBox.Show("Пользователя с такими данными нет");
-            } else if (RequiredUser.Type == "user")
-            {
-                MessageBox.Show("user");
-            } else if (RequiredUser.Type == "cashier")
-            {
-                MessageBox.Show("cashier");
-            } else if (RequiredUser.Type == "admin")
-            {
-                ViewHelper.WindowsInteract(this, new AdminWindow());
+                ViewHelper.ShowMessage("Не пройдена капча");
             }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
