@@ -330,11 +330,13 @@ namespace Restik.Lib
 
                 var AddedEvent = booking.Event;
                 booking.Event = null;
+                booking.EventId = null;
 
                 if (AddedEvent != null)
                 {
                     var ExistedEvent = db.Events.SingleOrDefault(E => E.Id == AddedEvent.Id);
                     booking.Event = ExistedEvent;
+                    booking.EventId = ExistedEvent.Id;
                 }
 
                 var AddedPlaces = booking.Places;
@@ -388,6 +390,75 @@ namespace Restik.Lib
                 db.Bookings.Remove(RequiredBooking);
                 db.SaveChanges();
             }
+        }
+
+        public static void UpdateBooking(Booking newBooking)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredBooking = db.Bookings.Include(B => B.Places).Include(B => B.Dishes).SingleOrDefault(B => B.Id == newBooking.Id);
+                RequiredBooking.Number = newBooking.Number;
+                RequiredBooking.DateStart = newBooking.DateStart;
+                RequiredBooking.DateEnd = newBooking.DateEnd;
+                RequiredBooking.NumberPlaces = newBooking.NumberPlaces;
+
+                var AddedUser = newBooking.User;
+                RequiredBooking.User = new User();
+
+                var ExistedUser = db.Users.SingleOrDefault(U => U.Id == AddedUser.Id);
+                RequiredBooking.User = ExistedUser;
+
+                var AddedEvent = newBooking.Event;
+                RequiredBooking.Event = null;
+                RequiredBooking.EventId = null;
+
+                if (AddedEvent != null)
+                {
+                    var ExistedEvent = db.Events.SingleOrDefault(E => E.Id == AddedEvent.Id);
+                    RequiredBooking.Event = ExistedEvent;
+                    RequiredBooking.EventId = ExistedEvent.Id;
+                }
+
+                foreach (var ExistedPlace in RequiredBooking.Places)
+                {
+                    ExistedPlace.Booking = null;
+                    ExistedPlace.BookingId = null;
+                }
+
+                var AddedPlaces = newBooking.Places;
+                RequiredBooking.Places = new List<Place>();
+                db.SaveChanges();
+
+                foreach (var Item in AddedPlaces)
+                {
+                    var ExistedPlace = db.Places.SingleOrDefault(P => P.Id == Item.Id);
+                    RequiredBooking.Places.Add(ExistedPlace);
+                }
+
+                foreach (var ExistedDish in RequiredBooking.Dishes)
+                {
+                    ExistedDish.Bookings.Remove(RequiredBooking);
+                }
+
+                var AddedDishes = newBooking.Dishes;
+                RequiredBooking.Dishes = new List<Dish>();
+                db.SaveChanges();
+
+                foreach (var Item in AddedDishes)
+                {
+                    var ExistedDish = db.Dishes.SingleOrDefault(D => D.Id == Item.Id);
+                    RequiredBooking.Dishes.Add(ExistedDish);
+                }
+                
+
+                db.Bookings.Update(RequiredBooking);
+                db.SaveChanges();
+
+                var ExistedPayment = db.Payments.SingleOrDefault(P => P.BookingId == RequiredBooking.Id);
+                db.Payments.Update(ExistedPayment);
+                db.SaveChanges();
+            }
+
         }
 
         ///

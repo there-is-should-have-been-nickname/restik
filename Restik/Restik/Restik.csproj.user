@@ -46,6 +46,9 @@
     <Compile Update="Views\SignUpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UpdateBookingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UpdateCuisineWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,6 +112,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UpdateBookingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UpdateCuisineWindow.xaml">

@@ -105,3 +105,5 @@ C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Vie
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\CashierWindow.g.cs
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\AddPaymentWindow.baml
 C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\CashierWindow.baml
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateBookingWindow.g.cs
+C:\Users\ACER\Desktop\Projects\restik\Restik\Restik\obj\Debug\net5.0-windows\Views\UpdateBookingWindow.baml

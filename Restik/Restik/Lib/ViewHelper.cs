@@ -208,6 +208,29 @@ namespace Restik.Lib
             }
         }
 
+        public static void DrawPlaces(WrapPanel WrapPanel, List<Place> Places, int BookingId)
+        {
+            WrapPanel.Children.Clear();
+            foreach (var Place in Places)
+            {
+                var color = Brushes.Gray;
+                if (Place.Booking != null)
+                {
+                    if (Place.BookingId == BookingId)
+                    {
+                        color = Brushes.ForestGreen;
+                    } else
+                    {
+                        color = Brushes.IndianRed;
+                    }
+                    
+                }
+
+                var button = GetButtonItem("#" + Place.Name.Split(' ')[1] + "\n" + Place.Price.ToString() + " р.", color);
+                WrapPanel.Children.Add(button);
+            }
+        }
+
         public static List<string> GetPlaceNames(string str)
         {
             var PlaceNumbers = str.Remove(0, 6).Split(", ").ToList();

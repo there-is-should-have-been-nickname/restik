@@ -41,7 +41,7 @@ namespace Restik.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            ViewHelper.WindowsInteract(this, new UpdateBookingWindow(BookingsComboBox.Text, CurrentUser));
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
