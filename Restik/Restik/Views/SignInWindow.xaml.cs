@@ -43,7 +43,7 @@ namespace Restik.Views
                 }
                 else if (RequiredUser.Type == "cashier")
                 {
-                    MessageBox.Show("cashier");
+                    ViewHelper.WindowsInteract(this, new CashierWindow(RequiredUser));
                 }
                 else if (RequiredUser.Type == "admin")
                 {

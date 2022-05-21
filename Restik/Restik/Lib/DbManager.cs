@@ -201,7 +201,7 @@ namespace Restik.Lib
         {
             using (var db = new ApplicationContext())
             {
-                return db.Places.Include(T => T.Table).Where(P => P.Table.Name == TableName).ToList();
+                return db.Places.Include(T => T.Booking).Where(P => P.Table.Name == TableName).ToList();
             }
         }
 
@@ -364,6 +364,30 @@ namespace Restik.Lib
                 db.SaveChanges();
             }
                 
+        }
+
+        public static void DeleteBooking(string number)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredBooking = db.Bookings.SingleOrDefault(B => B.Number == number);
+                var Payments = db.Payments.Include(P => P.Booking).Where(P => P.BookingId == RequiredBooking.Id);
+                foreach (var Pay in Payments)
+                {
+                    db.Payments.Remove(Pay);
+                }
+                db.SaveChanges();
+
+                var Places = db.Places.Include(P => P.Booking).Where(P => P.BookingId == RequiredBooking.Id);
+                foreach (var Place in Places)
+                {
+                    Place.Booking = null;
+                }
+                db.SaveChanges();
+
+                db.Bookings.Remove(RequiredBooking);
+                db.SaveChanges();
+            }
         }
 
         ///
@@ -543,6 +567,33 @@ namespace Restik.Lib
                 RequiredDish.CuisineId = ExistedCuisine.Id;
 
                 db.Dishes.Update(RequiredDish);
+                db.SaveChanges();
+            }
+        }
+
+        public static Payment GetPayment(int BookingId)
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Payments.Include(P => P.Booking).SingleOrDefault(P => P.BookingId == BookingId);
+            }
+        }
+
+        public static void UpdatePayment(Payment NewPayment)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var RequiredPayment = db.Payments.SingleOrDefault(P => P.Id == NewPayment.Id);
+                RequiredPayment.IsPaid = NewPayment.IsPaid;
+
+                var AddedUser = NewPayment.User;
+                RequiredPayment.User = new User();
+
+                var ExistedUser = db.Users.SingleOrDefault(U => U.Id == AddedUser.Id);
+                RequiredPayment.User = ExistedUser;
+                RequiredPayment.UserId = ExistedUser.Id;
+
+                db.Payments.Update(RequiredPayment);
                 db.SaveChanges();
             }
         }

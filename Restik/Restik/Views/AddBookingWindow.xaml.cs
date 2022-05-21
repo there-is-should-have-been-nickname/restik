@@ -43,9 +43,10 @@ namespace Restik.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            var Num = FuncHelper.GenerateNumber();
             var newBooking = new Booking()
             {
-                Number = FuncHelper.GenerateNumber(),
+                Number = Num,
                 DateStart = DateTime.Parse(DateStartTextBox.Text),
                 DateEnd = DateTime.Parse(DateStartTextBox.Text).AddHours(Convert.ToDouble(LongTextBox.Text)),
                 UserId = CurrentUser.Id,
@@ -68,7 +69,7 @@ namespace Restik.Views
             var ListDishesNames = ViewHelper.GetDishesNames(DishesLabel.Text);
             newBooking.Dishes = DbManager.GetDishes(ListDishesNames);
 
-            FuncHelper.AddOrUpdateItem(DbManager.AddBooking, newBooking, "Вы успешно добавили бронь", this, new MainWindow());
+            FuncHelper.AddOrUpdateItem(DbManager.AddBooking, newBooking, "Вы успешно добавили бронь. Ваш номер: " + Num, this, new MainWindow());
         }
 
         private void HallsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
