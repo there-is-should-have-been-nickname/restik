@@ -50,17 +50,25 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewCuisine = DbManager.GetCuisine(CuisinesComboBox.Text);
-
-            var UpdatedDish = new Dish
+            var errorMessage = ErrorHandler.GetDishErrorMessage(NameTextBox.Text, PathTextBox.Text, CuisinesComboBox.Text);
+            if (errorMessage == null)
             {
-                Id = CurrentDish.Id,
-                Name = NameTextBox.Text,
-                ImagePath = PathTextBox.Text,
-                CuisineId = NewCuisine.Id,
-                Cuisine = NewCuisine
-            };
-            FuncHelper.AddOrUpdateItem<Dish>(DbManager.UpdateDish, UpdatedDish, "Вы успешно обновили блюдо", this);
+                var NewCuisine = DbManager.GetCuisine(CuisinesComboBox.Text);
+
+                var UpdatedDish = new Dish
+                {
+                    Id = CurrentDish.Id,
+                    Name = NameTextBox.Text,
+                    ImagePath = PathTextBox.Text,
+                    CuisineId = NewCuisine.Id,
+                    Cuisine = NewCuisine
+                };
+                FuncHelper.AddOrUpdateItem<Dish>(DbManager.UpdateDish, UpdatedDish, "Вы успешно обновили блюдо", this);
+            }
+            else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }

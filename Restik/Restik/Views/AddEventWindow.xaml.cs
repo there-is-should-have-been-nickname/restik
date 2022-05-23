@@ -33,12 +33,19 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewEvent = new Event
+            var errorMessage = ErrorHandler.GetEventErrorMessage(TypeTextBox.Text);
+            if (errorMessage == null)
             {
-                Type = TypeTextBox.Text
-            };
+                var NewEvent = new Event
+                {
+                    Type = TypeTextBox.Text
+                };
 
-            FuncHelper.AddOrUpdateItem<Event>(DbManager.AddEvent, NewEvent, "Вы успешно добавили событие", this);
+                FuncHelper.AddOrUpdateItem<Event>(DbManager.AddEvent, NewEvent, "Вы успешно добавили событие", this);
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }

@@ -35,25 +35,32 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var AddedTable = DbManager.GetTable(TablesComboBox.Text);
-            var AddedBooking = DbManager.GetBooking(BookingsComboBox.Text);
-
-            var NewPlace = new Place
+            var errorMessage = ErrorHandler.GetPlaceErrorMessage(NameTextBox.Text, PriceTextBox.Text, TablesComboBox.Text);
+            if (errorMessage == null)
             {
-                Name = NameTextBox.Text,
-                Price = Convert.ToInt32(PriceTextBox.Text),
-                TableId = AddedTable.Id,
-                Table = AddedTable,
-            };
+                var AddedTable = DbManager.GetTable(TablesComboBox.Text);
+                var AddedBooking = DbManager.GetBooking(BookingsComboBox.Text);
 
-            if (AddedBooking != null)
+                var NewPlace = new Place
+                {
+                    Name = NameTextBox.Text,
+                    Price = Convert.ToInt32(PriceTextBox.Text),
+                    TableId = AddedTable.Id,
+                    Table = AddedTable,
+                };
+
+                if (AddedBooking != null)
+                {
+                    NewPlace.Booking = AddedBooking;
+                    NewPlace.BookingId = AddedBooking.Id;
+                }
+
+
+                FuncHelper.AddOrUpdateItem<Place>(DbManager.AddPlace, NewPlace, "Вы успешно добавили место", this);
+            } else
             {
-                NewPlace.Booking = AddedBooking;
-                NewPlace.BookingId = AddedBooking.Id;
+                ViewHelper.ShowMessage(errorMessage);
             }
-
-
-            FuncHelper.AddOrUpdateItem<Place>(DbManager.AddPlace, NewPlace, "Вы успешно добавили место", this);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

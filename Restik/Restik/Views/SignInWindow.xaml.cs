@@ -29,7 +29,11 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)CapchaCheckbox.IsChecked)
+            var errorMessage = ErrorHandler.GetSignInErrorMessage(MailTextBox.Text, PasswordTextBox.Text, CapchaCheckbox);
+            if (errorMessage != null)
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            } else
             {
                 var RequiredUser = DbManager.GetUser(MailTextBox.Text, PasswordTextBox.Text);
 
@@ -49,9 +53,6 @@ namespace Restik.Views
                 {
                     ViewHelper.WindowsInteract(this, new AdminWindow());
                 }
-            } else
-            {
-                ViewHelper.ShowMessage("Не пройдена капча");
             }
             
         }

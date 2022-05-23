@@ -36,10 +36,23 @@ namespace Restik.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            var Booking = DbManager.GetBooking(BookingNumberTextBox.Text);
-            CurrentPayment = DbManager.GetPayment(Booking.Id);
-            CostLabel.Content = "С вас " + CurrentPayment.Cost + " руб.";
-            PayButton.IsEnabled = true;
+            var errorMessage = ErrorHandler.GetPaymentErrorMessage(BookingNumberTextBox.Text);
+            if (errorMessage == null)
+            {
+                var Booking = DbManager.GetBooking(BookingNumberTextBox.Text);
+                if (Booking != null)
+                {
+                    CurrentPayment = DbManager.GetPayment(Booking.Id);
+                    CostLabel.Content = "С вас " + CurrentPayment.Cost + " руб.";
+                    PayButton.IsEnabled = true;
+                } else
+                {
+                    ViewHelper.ShowMessage("Брони с таким номером нет");
+                }
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

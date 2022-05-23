@@ -42,17 +42,26 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewHall = DbManager.GetHall(HallsComboBox.Text);
+            var errorMessage = ErrorHandler.GetTableErrorMessage(NameTextBox.Text, HallsComboBox.Text);
 
-            var UpdatedTable = new Restik.Models.Table
+            if (errorMessage == null)
             {
-                Id = CurrentTable.Id,
-                Name = NameTextBox.Text,
-                HallId = NewHall.Id,
-                Hall = NewHall
-            };
+                var NewHall = DbManager.GetHall(HallsComboBox.Text);
 
-            FuncHelper.AddOrUpdateItem<Restik.Models.Table>(DbManager.UpdateTable, UpdatedTable, "Вы успешно обновили стол", this);
+                var UpdatedTable = new Models.Table
+                {
+                    Id = CurrentTable.Id,
+                    Name = NameTextBox.Text,
+                    HallId = NewHall.Id,
+                    Hall = NewHall
+                };
+
+                FuncHelper.AddOrUpdateItem<Models.Table>(DbManager.UpdateTable, UpdatedTable, "Вы успешно обновили стол", this);
+            }
+            else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }

@@ -38,7 +38,7 @@
 
 
         <Label Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="3" Height="30" VerticalAlignment="Top" Margin="10, 70, 0, 0" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Путь к файлу</Label>
-        <TextBox x:Name="PathTextBox" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="4" Height="30" VerticalAlignment="Top" Margin="10, 110, 0, 0" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+        <TextBox x:Name="PathTextBox" IsReadOnly="True" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="4" Height="30" VerticalAlignment="Top" Margin="10, 110, 0, 0" FontFamily="Consolas" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
 
 
 

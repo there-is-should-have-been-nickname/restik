@@ -45,17 +45,27 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var UpdatedUser = new User
-            {
-                Id = CurrentUser.Id,
-                Type = TypeComboBox.Text,
-                FullName = FullNameTextBox.Text,
-                Phone = PhoneTextBox.Text,
-                Mail = MailTextBox.Text,
-                Password = PasswordTextBox.Text
-            };
+            var errorMessage = ErrorHandler.GetUserErrorMessage(MailTextBox.Text,
+                PasswordTextBox.Text, PhoneTextBox.Text, FullNameTextBox.Text, TypeComboBox.Text);
 
-            FuncHelper.AddOrUpdateItem<User>(DbManager.UpdateUser, UpdatedUser, "Вы успешно обновили пользователя", this);
+            if (errorMessage == null)
+            {
+                var UpdatedUser = new User
+                {
+                    Id = CurrentUser.Id,
+                    Type = TypeComboBox.Text,
+                    FullName = FullNameTextBox.Text,
+                    Phone = PhoneTextBox.Text,
+                    Mail = MailTextBox.Text,
+                    Password = PasswordTextBox.Text
+                };
+
+                FuncHelper.AddOrUpdateItem<User>(DbManager.UpdateUser, UpdatedUser, "Вы успешно обновили пользователя", this);
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
+                
         }
     }
 }

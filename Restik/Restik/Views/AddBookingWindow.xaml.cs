@@ -43,33 +43,40 @@ namespace Restik.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            var Num = FuncHelper.GenerateNumber();
-            var newBooking = new Booking()
+            var errorMessage = ErrorHandler.GetBookingErrorMessage(DateStartTextBox.Text, LongTextBox.Text, PlacesLabel.Text, DishesLabel.Text);
+            if (errorMessage == null)
             {
-                Number = Num,
-                DateStart = DateTime.Parse(DateStartTextBox.Text),
-                DateEnd = DateTime.Parse(DateStartTextBox.Text).AddHours(Convert.ToDouble(LongTextBox.Text)),
-                UserId = CurrentUser.Id,
-                User = CurrentUser
-            };
+                var Num = FuncHelper.GenerateNumber();
+                var newBooking = new Booking()
+                {
+                    Number = Num,
+                    DateStart = DateTime.Parse(DateStartTextBox.Text),
+                    DateEnd = DateTime.Parse(DateStartTextBox.Text).AddHours(Convert.ToDouble(LongTextBox.Text)),
+                    UserId = CurrentUser.Id,
+                    User = CurrentUser
+                };
 
-            var AddedEvent = DbManager.GetEvent(EventsComboBox.Text);
+                var AddedEvent = DbManager.GetEvent(EventsComboBox.Text);
 
-            if (AddedEvent != null)
+                if (AddedEvent != null)
+                {
+                    newBooking.EventId = AddedEvent.Id;
+                    newBooking.Event = AddedEvent;
+                }
+
+                var ListPlaceNames = ViewHelper.GetPlaceNames(PlacesLabel.Text);
+                newBooking.Places = DbManager.GetPlaces(ListPlaceNames);
+
+                newBooking.NumberPlaces = newBooking.Places.Count;
+
+                var ListDishesNames = ViewHelper.GetDishesNames(DishesLabel.Text);
+                newBooking.Dishes = DbManager.GetDishes(ListDishesNames);
+
+                FuncHelper.AddOrUpdateItem(DbManager.AddBooking, newBooking, "Вы успешно добавили бронь. Ваш номер: " + Num, this, new MainWindow());
+            } else
             {
-                newBooking.EventId = AddedEvent.Id;
-                newBooking.Event = AddedEvent;
+                ViewHelper.ShowMessage(errorMessage);
             }
-
-            var ListPlaceNames = ViewHelper.GetPlaceNames(PlacesLabel.Text);
-            newBooking.Places = DbManager.GetPlaces(ListPlaceNames);
-
-            newBooking.NumberPlaces = newBooking.Places.Count;
-
-            var ListDishesNames = ViewHelper.GetDishesNames(DishesLabel.Text);
-            newBooking.Dishes = DbManager.GetDishes(ListDishesNames);
-
-            FuncHelper.AddOrUpdateItem(DbManager.AddBooking, newBooking, "Вы успешно добавили бронь. Ваш номер: " + Num, this, new MainWindow());
         }
 
         private void HallsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

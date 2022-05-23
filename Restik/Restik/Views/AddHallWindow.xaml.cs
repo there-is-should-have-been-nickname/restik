@@ -34,13 +34,21 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewHall = new Hall
-            {
-                Name = NameTextBox.Text,
-                ImagePath = PathTextBox.Text
-            };
+            var errorMessage = ErrorHandler.GetHallErrorMessage(NameTextBox.Text, PathTextBox.Text);
 
-            FuncHelper.AddOrUpdateItem<Hall>(DbManager.AddHall, NewHall, "Вы успешно добавили зал", this);
+            if (errorMessage == null)
+            {
+                var NewHall = new Hall
+                {
+                    Name = NameTextBox.Text,
+                    ImagePath = PathTextBox.Text
+                };
+
+                FuncHelper.AddOrUpdateItem<Hall>(DbManager.AddHall, NewHall, "Вы успешно добавили зал", this);
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

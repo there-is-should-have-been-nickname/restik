@@ -49,28 +49,37 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewTable = DbManager.GetTable(TablesComboBox.Text);
+            var errorMessage = ErrorHandler.GetPlaceErrorMessage(NameTextBox.Text, PriceTextBox.Text, TablesComboBox.Text);
+            if (errorMessage == null)
+            {
+                var NewTable = DbManager.GetTable(TablesComboBox.Text);
 
-            var UpdatedPlace = new Place
-            {
-                Id = CurrentPlace.Id,
-                Name = NameTextBox.Text,
-                Price = Convert.ToInt32(PriceTextBox.Text),
-                TableId = NewTable.Id,
-                Table = NewTable
-            };
+                var UpdatedPlace = new Place
+                {
+                    Id = CurrentPlace.Id,
+                    Name = NameTextBox.Text,
+                    Price = Convert.ToInt32(PriceTextBox.Text),
+                    TableId = NewTable.Id,
+                    Table = NewTable
+                };
 
-            if (!string.IsNullOrWhiteSpace(BookingsComboBox.Text))
-            {
-                var NewBooking = DbManager.GetBooking(BookingsComboBox.Text);
-                UpdatedPlace.Booking = NewBooking;
-                UpdatedPlace.BookingId = NewBooking.Id;
-            } else
-            {
-                UpdatedPlace.Booking = null;
+                if (!string.IsNullOrWhiteSpace(BookingsComboBox.Text))
+                {
+                    var NewBooking = DbManager.GetBooking(BookingsComboBox.Text);
+                    UpdatedPlace.Booking = NewBooking;
+                    UpdatedPlace.BookingId = NewBooking.Id;
+                }
+                else
+                {
+                    UpdatedPlace.Booking = null;
+                }
+
+                FuncHelper.AddOrUpdateItem<Place>(DbManager.UpdatePlace, UpdatedPlace, "Вы успешно обновили место", this);
             }
-
-            FuncHelper.AddOrUpdateItem<Place>(DbManager.UpdatePlace, UpdatedPlace, "Вы успешно обновили место", this);
+            else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

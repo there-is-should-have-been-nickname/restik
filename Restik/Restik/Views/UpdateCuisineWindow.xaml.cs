@@ -42,13 +42,21 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var UpdatedCuisine = new Cuisine
+            var errorMessage = ErrorHandler.GetCuisineErrorMessage(NameTextBox.Text, DescriptionTextBox.Text);
+            if (errorMessage == null)
             {
-                Id = CurrentCuisine.Id,
-                Name = NameTextBox.Text,
-                Description = DescriptionTextBox.Text
-            };
-            FuncHelper.AddOrUpdateItem<Cuisine>(DbManager.UpdateCuisine, UpdatedCuisine, "Вы успешно обновили кухню", this);
+                var UpdatedCuisine = new Cuisine
+                {
+                    Id = CurrentCuisine.Id,
+                    Name = NameTextBox.Text,
+                    Description = DescriptionTextBox.Text
+                };
+                FuncHelper.AddOrUpdateItem<Cuisine>(DbManager.UpdateCuisine, UpdatedCuisine, "Вы успешно обновили кухню", this);
+            }
+            else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }

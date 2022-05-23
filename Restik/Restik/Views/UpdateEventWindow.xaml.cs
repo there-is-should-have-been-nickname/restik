@@ -41,13 +41,21 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewEvent = new Event
+            var errorMessage = ErrorHandler.GetEventErrorMessage(TypeTextBox.Text);
+            if (errorMessage == null)
             {
-                Id = CurrentEvent.Id,
-                Type = TypeTextBox.Text
-            };
+                var NewEvent = new Event
+                {
+                    Id = CurrentEvent.Id,
+                    Type = TypeTextBox.Text
+                };
 
-            FuncHelper.AddOrUpdateItem<Event>(DbManager.UpdateEvent, NewEvent, "Вы успешно обновили событие", this);
+                FuncHelper.AddOrUpdateItem<Event>(DbManager.UpdateEvent, NewEvent, "Вы успешно обновили событие", this);
+            }
+            else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }

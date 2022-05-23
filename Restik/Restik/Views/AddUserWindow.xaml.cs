@@ -33,16 +33,26 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var NewUser = new User
-            {
-                Type = TypeComboBox.Text,
-                FullName = FullNameTextBox.Text,
-                Phone = PhoneTextBox.Text,
-                Mail = MailTextBox.Text,
-                Password = PasswordTextBox.Text
-            };
+            var errorMessage = ErrorHandler.GetUserErrorMessage(MailTextBox.Text,
+                PasswordTextBox.Text, PhoneTextBox.Text, FullNameTextBox.Text, TypeComboBox.Text);
 
-            FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно добавили пользователя", this);
+            if (errorMessage == null)
+            {
+                var NewUser = new User
+                {
+                    Type = TypeComboBox.Text,
+                    FullName = FullNameTextBox.Text,
+                    Phone = PhoneTextBox.Text,
+                    Mail = MailTextBox.Text,
+                    Password = PasswordTextBox.Text
+                };
+
+                FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно добавили пользователя", this);
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
+            
         }
     }
 }

@@ -293,8 +293,6 @@ namespace Restik.Lib
             }
         }
 
-        ///
-
         public static List<Booking> GetBookings()
         {
             using (var db = new ApplicationContext())
@@ -460,8 +458,6 @@ namespace Restik.Lib
             }
 
         }
-
-        ///
         public static List<Event> GetEvents()
         {
             using (var db = new ApplicationContext())

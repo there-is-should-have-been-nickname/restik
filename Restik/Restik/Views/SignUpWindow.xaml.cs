@@ -28,7 +28,13 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)CapchaCheckbox.IsChecked)
+            var errorMessage = ErrorHandler.GetSignUpErrorMessage(MailTextBox.Text, 
+                PasswordTextBox.Text, PhoneTextBox.Text, FullNameTextBox.Text, CapchaCheckbox);
+            if (errorMessage != null)
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
+            else
             {
                 var NewUser = new User
                 {
@@ -40,10 +46,6 @@ namespace Restik.Views
                 };
 
                 FuncHelper.AddOrUpdateItem<User>(DbManager.AddUser, NewUser, "Вы успешно зарегистрировались", this, new MainWindow());
-
-            } else
-            {
-                ViewHelper.ShowMessage("Не пройдена капча");
             }
         }
 

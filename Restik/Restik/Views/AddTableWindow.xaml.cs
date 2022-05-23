@@ -33,15 +33,23 @@ namespace Restik.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var AddedHall = DbManager.GetHall(HallsComboBox.Text);
+            var errorMessage = ErrorHandler.GetTableErrorMessage(NameTextBox.Text, HallsComboBox.Text);
 
-            var NewTable = new Restik.Models.Table
+            if (errorMessage == null)
             {
-                Name = NameTextBox.Text,
-                HallId = AddedHall.Id,
-                Hall = AddedHall
-            };
-            FuncHelper.AddOrUpdateItem<Restik.Models.Table>(DbManager.AddTable, NewTable, "Вы успешно добавили стол", this);
+                var AddedHall = DbManager.GetHall(HallsComboBox.Text);
+
+                var NewTable = new Models.Table
+                {
+                    Name = NameTextBox.Text,
+                    HallId = AddedHall.Id,
+                    Hall = AddedHall
+                };
+                FuncHelper.AddOrUpdateItem<Models.Table>(DbManager.AddTable, NewTable, "Вы успешно добавили стол", this);
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }

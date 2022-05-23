@@ -41,12 +41,29 @@ namespace Restik.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            ViewHelper.WindowsInteract(this, new UpdateBookingWindow(BookingsComboBox.Text, CurrentUser));
+            var errorMessage = ErrorHandler.GetComboBoxErrorMessage(BookingsComboBox.Text, "бронями");
+
+            if (errorMessage == null)
+            {
+                ViewHelper.WindowsInteract(this, new UpdateBookingWindow(BookingsComboBox.Text, CurrentUser));
+            } else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            FuncHelper.DeleteItem(DbManager.DeleteBooking, ViewHelper.FillBookingsComboBox, BookingsComboBox, "Вы успешно удалили бронь");
+            var errorMessage = ErrorHandler.GetComboBoxErrorMessage(BookingsComboBox.Text, "бронями");
+
+            if (errorMessage == null)
+            {
+                FuncHelper.DeleteItem(DbManager.DeleteBooking, ViewHelper.FillBookingsComboBox, BookingsComboBox, "Вы успешно удалили бронь");
+            }
+            else
+            {
+                ViewHelper.ShowMessage(errorMessage);
+            }
         }
     }
 }
